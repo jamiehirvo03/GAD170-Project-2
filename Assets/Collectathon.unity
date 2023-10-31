@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &282113683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 282113685}
+  - component: {fileID: 282113684}
+  m_Layer: 0
+  m_Name: Ship
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &282113684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282113683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62919996d0ef0554192de8438ab77af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewmate: {fileID: 0}
+  firstName: 
+  lastName: 
+  candidateHobby: 
+  isParasite: 0
+--- !u!4 &282113685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282113683}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &847691299
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,9 +358,143 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &8100914761391193668
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 805886594023425247, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_Name
+      value: Crewmate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584414332378608996, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584414332378608996, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584414332378608996, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584414332378608996, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584414332378608996, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584414332378608996, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584414332378608996, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584414332378608996, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584414332378608996, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584414332378608996, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 805886594023425247, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8100914761391193670}
+  m_SourcePrefab: {fileID: 100100000, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+--- !u!1 &8100914761391193669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 805886594023425247, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+  m_PrefabInstance: {fileID: 8100914761391193668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8100914761391193670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100914761391193669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22d4a989eabb01459ce4bf905292af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstNames:
+  - Bob
+  - Dougie
+  - Hannah
+  - Jenny
+  - Peter
+  - Melissa
+  - Hugo
+  - Natasha
+  - Timothy
+  - Nancy
+  - Johnny
+  - Robert
+  - Chloe
+  - Emily
+  - Mike
+  lastNames:
+  - A.
+  - B.
+  - C.
+  - D.
+  - E.
+  - F.
+  - G.
+  - H.
+  - I.
+  - J.
+  - K.
+  - L.
+  - M.
+  - N.
+  - O.
+  - P.
+  - Q.
+  - R.
+  - S.
+  - T.
+  - U.
+  - V.
+  - W.
+  - X.
+  - Y.
+  - Z.
+  humanHobbies:
+  - Bowling
+  - Surfing
+  - Stargazing
+  - Kareoke
+  - Reading
+  parasiteHobbies:
+  - Invasion
+  - Moon Fishing
+  - Blending In
+  - Sabotage
+  - Planetary Pool
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 847691302}
   - {fileID: 954456406}
+  - {fileID: 8100914761391193668}
+  - {fileID: 282113685}
