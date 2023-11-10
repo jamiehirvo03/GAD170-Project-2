@@ -152,11 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62919996d0ef0554192de8438ab77af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crewmate: {fileID: 0}
-  firstName: 
-  lastName: 
-  candidateHobby: 
-  isParasite: 0
+  crewmate: {fileID: 8100914761391193670}
 --- !u!4 &282113685
 Transform:
   m_ObjectHideFlags: 0
@@ -435,61 +431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22d4a989eabb01459ce4bf905292af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstNames:
-  - Bob
-  - Dougie
-  - Hannah
-  - Jenny
-  - Peter
-  - Melissa
-  - Hugo
-  - Natasha
-  - Timothy
-  - Nancy
-  - Johnny
-  - Robert
-  - Chloe
-  - Emily
-  - Mike
-  lastNames:
-  - A.
-  - B.
-  - C.
-  - D.
-  - E.
-  - F.
-  - G.
-  - H.
-  - I.
-  - J.
-  - K.
-  - L.
-  - M.
-  - N.
-  - O.
-  - P.
-  - Q.
-  - R.
-  - S.
-  - T.
-  - U.
-  - V.
-  - W.
-  - X.
-  - Y.
-  - Z.
-  humanHobbies:
-  - Bowling
-  - Surfing
-  - Stargazing
-  - Kareoke
-  - Reading
-  parasiteHobbies:
-  - Invasion
-  - Moon Fishing
-  - Blending In
-  - Sabotage
-  - Planetary Pool
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
