@@ -12,6 +12,7 @@ public class Ship : MonoBehaviour
 
     private int randomIndex; 
     private bool isParasite;
+    private bool waitForInput = false;
 
 
     //Add list here to store new crewmates
@@ -28,7 +29,20 @@ public class Ship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+        while(waitForInput)
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                ApproveCandidate();
+                break;
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                DeclineCandidate();
+                break;
+            }
+        }       
     }
 
     //Function that generates a candidates name and hobby
@@ -48,11 +62,12 @@ public class Ship : MonoBehaviour
             candidateHobby = crewmate.GetHumanHobby();
         }
 
-        Debug.Log($"First Name: {firstName}");
-        Debug.Log($"Last Name: {lastName}");
         Debug.Log($"Is a Parasite: {isParasite}");
-        Debug.Log($"Their favoruite thing is: {candidateHobby}");
         
+        Debug.Log($"This candidates name is {firstName} {lastName} , Their favourite thing to do is {candidateHobby}.");
+
+        waitForInput = true;
+        Debug.Log("|A| - Accept \n|D| - Decline");
     }
 
     //Function that randomly decideds if the candidate is a human or a parasite
@@ -74,13 +89,17 @@ public class Ship : MonoBehaviour
     //Function for declining candidate and not adding them to the list
     private void DeclineCandidate()
     {
+        Debug.Log("Candidate has been rejected!");
         //Clear candidate name and generate new candidate
+
+        //CrewmateApplication();
     }
 
     //Function for adding candidate to crew list, while instantiating an object
     private void ApproveCandidate()
     {
-       //Add candidate info to appropriate lists
+        Debug.Log("Candidate has been approved!");
+        //Add candidate info to appropriate lists
        //Instantiate crewmate object from prefab
     }
     
