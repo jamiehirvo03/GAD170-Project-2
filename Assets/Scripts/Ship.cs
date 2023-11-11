@@ -63,6 +63,8 @@ public class Ship : MonoBehaviour
                     else
                     {
                         Debug.Log($"{candidateFirstName} {candidateLastName} was secretly a parasite! \nThey couldn't find any humans to kill so they got bored and left!");
+                        waitForInput = false;
+                        EndTurn();
                     }
                 }
             }
@@ -167,8 +169,16 @@ public class Ship : MonoBehaviour
 
         //Remove crewmates from list (loop through collection and check 'if' any have the same hobby)
 
-        //Destroy objects
+        for (int i = 0; i < crewList.Count; i++)
+        {
+            //Check each item in the list for the targeted hobby
+            //Remove each 'targeted' crewmate and destroy their objects 
 
+            if (crewList[i].GetComponent<Crewmate>().hobby == targetHobby)
+            {
+                crewList[i].GetComponent<Crewmate>().KillCrewmate();
+            }
+        }
     }
      public void RemoveCrewmate(Crewmate crewmateToRemove)
     {
