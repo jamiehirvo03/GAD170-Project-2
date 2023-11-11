@@ -36,7 +36,20 @@ public class Ship : MonoBehaviour
     public void EndTurn()
     {
         //Complete any checks before ending the turn
-        NewTurn();
+
+
+        //Clear any UI elements to prepare for next turn
+
+
+        //Check if all 10 crewmate spots are filled, if so, call the end game function
+        if (crewList.Count == 10)
+        {
+            GameOver();
+        }
+        else
+        {
+            NewTurn();
+        }
     }
     private void NewTurn()
     {
@@ -48,32 +61,15 @@ public class Ship : MonoBehaviour
     {
         if (waitForInput)
         {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                if (!isParasite) 
-                {
-                    ApproveCandidate();
-                }
-                else
-                {
-                    if (crewList.Count > 0) 
-                    {
-                        CrewmateMurderTime();
-                    }
-                    else
-                    {
-                        Debug.Log($"{candidateFirstName} {candidateLastName} was secretly a parasite! \nThey couldn't find any humans to kill so they got bored and left!");
-                        waitForInput = false;
-                        EndTurn();
-                    }
-                }
-            }
+            //if (Input.GetKeyDown(KeyCode.A))
+            //{
+            //  ApproveCandidate();
+            //}
 
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                DeclineCandidate();
-                
-            }
+            //if (Input.GetKeyDown(KeyCode.D))
+            //{
+            //  DeclineCandidate();   
+            //}
         }
     }
 
@@ -118,30 +114,53 @@ public class Ship : MonoBehaviour
     }
 
     //Function for declining candidate and not adding them to the list
-    private void DeclineCandidate()
+    public void DeclineCandidate()
     {
-        waitForInput = false;
-        Debug.Log("Candidate has been rejected!\n");
-        //Clear candidate name and generate new candidate
-       
-        EndTurn();
+        if (waitForInput)
+        {
+            waitForInput = false;
+            Debug.Log("Candidate has been rejected!\n");
+            //Clear candidate name and generate new candidate
+
+            EndTurn();
+        }
     }
 
     //Function for adding candidate to crew list, while instantiating an object
-    private void ApproveCandidate()
+    public void ApproveCandidate()
     {
-        waitForInput = false;
-        Debug.Log("Candidate has been approved!\n");
+        if (waitForInput)
+        {
+            if (!isParasite)
+            {
+                waitForInput = false;
+                Debug.Log("Candidate has been approved!\n");
 
-        //Instantiate crewmate object from prefab
-        float x = Random.Range(-10f, 10f);
-        float y = 0f;
-        float z = Random.Range(-10f, 10f);
-        Vector3 spawnPosition = new Vector3(x, y, z);
-        GameObject clone = Instantiate(crewmatePrefab, spawnPosition, Quaternion.identity) as GameObject;
-        crewList.Add(clone.GetComponent<Crewmate>());
+                //Instantiate crewmate object from prefab
+                float x = Random.Range(-10f, 10f);
+                float y = 0f;
+                float z = Random.Range(-10f, 10f);
+                Vector3 spawnPosition = new Vector3(x, y, z);
+                GameObject clone = Instantiate(crewmatePrefab, spawnPosition, Quaternion.identity) as GameObject;
+                crewList.Add(clone.GetComponent<Crewmate>());
 
-        EndTurn();
+                EndTurn();
+            }
+            else
+            {
+                if (crewList.Count > 0)
+                {
+                    CrewmateMurderTime();
+                }
+                else
+                {
+                    Debug.Log($"{candidateFirstName} {candidateLastName} was secretly a parasite! \nThey couldn't find any humans to kill so they got bored and left!");
+                    waitForInput = false;
+                    EndTurn();
+                }
+            }
+        }
+       
     }
 
     public string GetFirstName()
@@ -179,10 +198,17 @@ public class Ship : MonoBehaviour
                 crewList[i].GetComponent<Crewmate>().KillCrewmate();
             }
         }
+
+        EndTurn();
     }
      public void RemoveCrewmate(Crewmate crewmateToRemove)
     {
         crewList.Remove(crewmateToRemove);
     }
   
+    //Function that ends the game, showing a final screen displaying all final crew members and their hobbies
+    private void GameOver()
+    {
+
+    }
 }
