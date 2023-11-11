@@ -14,7 +14,7 @@ public class Ship : MonoBehaviour
     private bool isParasite;
 
 
-    //Access names from the Crewmate script and store them here
+    //Add list here to store new crewmates
 
 
     // Start is called before the first frame update
@@ -31,6 +31,7 @@ public class Ship : MonoBehaviour
     
     }
 
+    //Function that generates a candidates name and hobby
     private void CrewmateApplication()
     {
         HumanOrParasite();
@@ -53,6 +54,8 @@ public class Ship : MonoBehaviour
         Debug.Log($"Their favoruite thing is: {candidateHobby}");
         
     }
+
+    //Function that randomly decideds if the candidate is a human or a parasite
     private void HumanOrParasite()
     {
         randomIndex = Random.Range(0, 10);
@@ -67,4 +70,27 @@ public class Ship : MonoBehaviour
             isParasite = false;
         }
     }
+
+    //Function for declining candidate and not adding them to the list
+    private void DeclineCandidate()
+    {
+        //Clear candidate name and generate new candidate
+    }
+
+    //Function for adding candidate to crew list, while instantiating an object
+    private void ApproveCandidate()
+    {
+       //Add candidate info to appropriate lists
+       //Instantiate crewmate object from prefab
+    }
+    
+    //Function for eliminating crewmates if a parasite is accepted (all crewmates with a randomly picked hobby)
+    private void CrewmateMurderTime()
+    {
+        //Randomly pick a hobby from current crewmates
+        //Remove crewmates from list (loop through collection and check 'if' any have the same hobby)
+        //Destroy objects
+    }
+
+  
 }
