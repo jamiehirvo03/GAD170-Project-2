@@ -9,6 +9,7 @@ public class Crewmate : MonoBehaviour
     public string hobby;
 
     public Ship ship;
+    public TextDisplay textDisplay;
 
     public void OnEnable()
     {
@@ -17,19 +18,17 @@ public class Crewmate : MonoBehaviour
         lastName = ship.GetLastName();
         hobby = ship.GetHobby();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
- 
-    }
-
     public void KillCrewmate()
     {
-        if(ship != null)
+        if (ship != null)
         {
             ship.RemoveCrewmate(this);
         }
+        else
+        {
+            textDisplay.Problems();
+        }
+        
         Destroy(gameObject);
     }
 }

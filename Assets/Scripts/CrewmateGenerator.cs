@@ -30,17 +30,4 @@ public class CrewmateGenerator : MonoBehaviour
     {
         return parasiteHobbies[Random.Range(0,parasiteHobbies.Count)];
     }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

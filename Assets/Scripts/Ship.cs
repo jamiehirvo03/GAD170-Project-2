@@ -74,8 +74,8 @@ public class Ship : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
         //if (waitForInput)
         //{
             //if (Input.GetKeyDown(KeyCode.A))
@@ -88,7 +88,7 @@ public class Ship : MonoBehaviour
             //  DeclineCandidate();   
             //}
         //}
-    }
+    //}
 
     //Function that generates a candidates name and hobby
     private void CrewmateApplication()

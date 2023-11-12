@@ -1240,6 +1240,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5458655536868245486, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
+      propertyPath: textDisplay
+      value: 
+      objectReference: {fileID: 2013979363}
     - target: {fileID: 3891214453360875319, guid: c5311db13f80485469b8d0af9bf420f8, type: 3}
       propertyPath: m_Name
       value: Crewmate

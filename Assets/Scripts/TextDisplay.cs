@@ -32,7 +32,7 @@ public class TextDisplay : MonoBehaviour
         }
         else
         {
-            myText.text = "There has been an error!";
+            myText.text = textToAdd;
         }
     }
 
@@ -43,11 +43,11 @@ public class TextDisplay : MonoBehaviour
     }
 
     //This function clears the text field, prints an error message and prevents any further text being added
-    public void Problems(string errorReport)
+    public void Problems()
     {
         isProblem = true;
         ClearText();
-        AddText(errorReport);
+        AddText("There has been an error!");
 
     }
 
