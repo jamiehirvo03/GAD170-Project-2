@@ -73,7 +73,7 @@ public class TextDisplay : MonoBehaviour
     //Changes the 'Next Turn' button into a 'New Game Button'
     public void NewGameButton()
     {
-        nextTurnText.text = "Next Game";
+        nextTurnText.text = "New Game";
     }
 
     //Changes the 'New Game' button back to the 'Next Turn button' when new game is started

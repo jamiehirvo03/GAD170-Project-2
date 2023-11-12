@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Ship : MonoBehaviour
     private int randomIndex; 
     private bool isParasite;
     private bool waitForInput;
+    private bool gameEnded;
 
 
     //Add list here to store new crewmates
@@ -31,13 +33,13 @@ public class Ship : MonoBehaviour
     private void NewGame()
     {
         Debug.Log("A new game has been started\n");
-
-        crewList.Clear();
         waitForInput = false;
-        textDisplay.nextTurnButton.interactable = false;
+        gameEnded = false;
 
+        textDisplay.NextTurnDisable();
         textDisplay.NextTurnButton();
-        
+        textDisplay.ClearText();
+
         CrewmateApplication();
     }
 
@@ -46,7 +48,16 @@ public class Ship : MonoBehaviour
         //Check if all 10 crewmate spots are filled, if so, call the end game function
         if (crewList.Count == 10)
         {
-            GameOver();
+            if (!gameEnded)
+            {
+                GameOver();
+            }
+            else
+            {
+                //This will reload the scene, resetting the game.
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            
         }
         else
         {
@@ -247,7 +258,9 @@ public class Ship : MonoBehaviour
         {
             textDisplay.AddText($"\n{crewList[i].GetComponent<Crewmate>().firstName} {crewList[i].GetComponent<Crewmate>().lastName}   Favourite Hobby: {crewList[i].GetComponent<Crewmate>().hobby}");
         }
-
+        
         textDisplay.NewGameButton();
+
+        gameEnded = true;
     }
 }
