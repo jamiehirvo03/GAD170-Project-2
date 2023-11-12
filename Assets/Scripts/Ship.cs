@@ -7,8 +7,9 @@ using UnityEngine.UIElements;
 public class Ship : MonoBehaviour
 {
     public GameObject crewmatePrefab;
-
     public CrewmateGenerator crewmate;
+    public TextDisplay textDisplay;
+
     private string candidateFirstName;
     private string candidateLastName;
     private string candidateHobby;
@@ -29,18 +30,19 @@ public class Ship : MonoBehaviour
 
     private void NewGame()
     {
+        Debug.Log("A new game has been started\n");
+
+        crewList.Clear();
         waitForInput = false;
+        textDisplay.nextTurnButton.interactable = false;
+
+        textDisplay.NextTurnButton();
+        
         CrewmateApplication();
     }
 
     public void EndTurn()
     {
-        //Complete any checks before ending the turn
-
-
-        //Clear any UI elements to prepare for next turn
-
-
         //Check if all 10 crewmate spots are filled, if so, call the end game function
         if (crewList.Count == 10)
         {
@@ -53,14 +55,18 @@ public class Ship : MonoBehaviour
     }
     private void NewTurn()
     {
+        //Clear any UI elements to prepare for next turn
+        textDisplay.ClearText();
+        textDisplay.NextTurnDisable();
+
         CrewmateApplication();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (waitForInput)
-        {
+        //if (waitForInput)
+        //{
             //if (Input.GetKeyDown(KeyCode.A))
             //{
             //  ApproveCandidate();
@@ -70,7 +76,7 @@ public class Ship : MonoBehaviour
             //{
             //  DeclineCandidate();   
             //}
-        }
+        //}
     }
 
     //Function that generates a candidates name and hobby
@@ -90,9 +96,10 @@ public class Ship : MonoBehaviour
             candidateHobby = crewmate.GetHumanHobby();
         }
 
-        //Debug.Log($"Is a Parasite: {isParasite}");
-        
+        Debug.Log($"Is a Parasite: {isParasite}");
+
         Debug.Log($"This candidates name is {candidateFirstName} {candidateLastName} , Their favourite thing to do is {candidateHobby}.\n|A| - Accept |D| - Decline");
+        textDisplay.AddText($"This candidates name is {candidateFirstName} {candidateLastName} , Their favourite thing to do is {candidateHobby}.");
 
         waitForInput = true;
     }
@@ -101,7 +108,7 @@ public class Ship : MonoBehaviour
     private void HumanOrParasite()
     {
         randomIndex = Random.Range(0, 10);
-        //Debug.Log($"Random Index: {randomIndex}");
+        Debug.Log($"Random Index: {randomIndex}");
 
         if (randomIndex > 5)
         {
@@ -118,11 +125,23 @@ public class Ship : MonoBehaviour
     {
         if (waitForInput)
         {
-            waitForInput = false;
-            Debug.Log("Candidate has been rejected!\n");
-            //Clear candidate name and generate new candidate
+            if (!isParasite)
+            {
+                waitForInput = false;
+                Debug.Log("Candidate has been rejected!\n");
+                textDisplay.AddText("\n\nCandidate has been rejected!");
 
-            EndTurn();
+                //Enable End Turn Button
+                textDisplay.NextTurnEnable();
+            }
+            else
+            {
+                waitForInput = false;
+                Debug.Log("Woah, I think they were a parasite!\nGood thing you rejected them");
+                textDisplay.AddText("\n\nWoah, I think they were a parasite!\nGood thing you rejected them");
+
+                textDisplay.NextTurnEnable();
+            }
         }
     }
 
@@ -135,16 +154,18 @@ public class Ship : MonoBehaviour
             {
                 waitForInput = false;
                 Debug.Log("Candidate has been approved!\n");
+                textDisplay.AddText("\n\nCandidate has been approved!");
 
                 //Instantiate crewmate object from prefab
-                float x = Random.Range(-10f, 10f);
+                float x = Random.Range(-17f, 17f);
                 float y = 0f;
-                float z = Random.Range(-10f, 10f);
+                float z = Random.Range(7f, 10f);
                 Vector3 spawnPosition = new Vector3(x, y, z);
                 GameObject clone = Instantiate(crewmatePrefab, spawnPosition, Quaternion.identity) as GameObject;
                 crewList.Add(clone.GetComponent<Crewmate>());
 
-                EndTurn();
+                //Enable End Turn Button
+                textDisplay.NextTurnEnable();
             }
             else
             {
@@ -155,8 +176,12 @@ public class Ship : MonoBehaviour
                 else
                 {
                     Debug.Log($"{candidateFirstName} {candidateLastName} was secretly a parasite! \nThey couldn't find any humans to kill so they got bored and left!");
+                    textDisplay.AddText($"\n\n{candidateFirstName} {candidateLastName} was secretly a parasite! \nThey couldn't find any humans to kill so they got bored and left!");
+
                     waitForInput = false;
-                    EndTurn();
+
+                    //Enable End Turn Button
+                    textDisplay.NextTurnEnable();
                 }
             }
         }
@@ -184,7 +209,8 @@ public class Ship : MonoBehaviour
         //Randomly pick a hobby from current crewmates
         string targetHobby = crewList[(Random.Range(0, crewList.Count))].GetComponent<Crewmate>().hobby;
 
-        Debug.Log($"{candidateFirstName} {candidateLastName} was secretly a parasite! \nThey are going to kill everyone who enjoys {targetHobby}");
+        Debug.Log($"{candidateFirstName} {candidateLastName} was secretly a parasite! \nThey killed everyone who enjoys {targetHobby}");
+        textDisplay.AddText($"\n\n{candidateFirstName} {candidateLastName} was secretly a parasite! \nThey killed everyone who enjoys {targetHobby}");
 
         //Remove crewmates from list (loop through collection and check 'if' any have the same hobby)
 
@@ -199,9 +225,11 @@ public class Ship : MonoBehaviour
             }
         }
 
-        EndTurn();
+        //Enable End Turn Button
+        textDisplay.NextTurnEnable();
+
     }
-     public void RemoveCrewmate(Crewmate crewmateToRemove)
+    public void RemoveCrewmate(Crewmate crewmateToRemove)
     {
         crewList.Remove(crewmateToRemove);
     }
@@ -209,6 +237,17 @@ public class Ship : MonoBehaviour
     //Function that ends the game, showing a final screen displaying all final crew members and their hobbies
     private void GameOver()
     {
+        textDisplay.ClearText();
+        
+        Debug.Log("You have Successfully Filled all 10 spots!");
+        textDisplay.AddText("You have Successfully Filled All 10 spots!:\n");
 
+        //For loop that will check each item in it for crewmate info
+        for (int i = 0; i < crewList.Count; i++)
+        {
+            textDisplay.AddText($"\n{crewList[i].GetComponent<Crewmate>().firstName} {crewList[i].GetComponent<Crewmate>().lastName}   Favourite Hobby: {crewList[i].GetComponent<Crewmate>().hobby}");
+        }
+
+        textDisplay.NewGameButton();
     }
 }
